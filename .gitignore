@@ -1,0 +1,13 @@
+# Object files
+*.o
+
+# Exec
+*.out
+
+# Temp files
+*~
+*.swp
+*.tmp
+
+# Build dir
+obj/
