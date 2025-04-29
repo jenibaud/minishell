@@ -1,10 +1,20 @@
 #include "../inc/minishell.h"
 
-int	main(char **env)
+int	main(void)
 {
 	char *rl;
+	is_running = 1;
 
-	rl = readline("turboshell> ");
-	printf("%s", rl);
+	while (is_running != 0)
+	{
+		rl = readline("turboshell> ");
+		if (strcmp(rl, "exit") == 0) {
+			free(rl);
+            break;
+        }
+		add_history(rl);
+		printf("%s\n", rl);
+		free(rl);
+	}
 	return (0);
 }

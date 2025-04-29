@@ -20,6 +20,7 @@
 # include <sys/ioctl.h>
 # include <termios.h>
 # include <term.h>
+# include <stdbool.h>
 
 /*##############################################*/
 /*					Defines						*/
@@ -30,6 +31,14 @@
 # define CODE_NOT_EXEC 126;
 # define CODE_ERROR 1;
 # define CODE_BADFD 0;
+
+# define EXIT "exit";
+
+/*##############################################*/
+/*					Vars						*/
+/*##############################################*/
+
+bool	is_running;
 
 /*##############################################*/
 /*					Structs						*/
