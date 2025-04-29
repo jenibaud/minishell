@@ -12,6 +12,7 @@ int	main(void)
 			free(rl);
             break;
         }
+		add_history(rl);
 		printf("%s\n", rl);
 		free(rl);
 	}
