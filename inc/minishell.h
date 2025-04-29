@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julifern <julifern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jenibaud <jenibaud@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:06:13 by jenibaud          #+#    #+#             */
-/*   Updated: 2025/04/28 17:19:53 by julifern         ###   ########.fr       */
+/*   Updated: 2025/04/29 12:47:30 by jenibaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@
 /*					Structs						*/
 /*##############################################*/
 
+typedef struct	s_prompt
+{
+	char	*cmd;
+	char	*args;
+}	t_prompt;
 
 
 #endif
