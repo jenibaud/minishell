@@ -5,6 +5,7 @@
 /*					Includes					*/
 /*##############################################*/
 
+# include <libft/inc/libft.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdio.h>
@@ -35,12 +36,6 @@
 # define EXIT "exit";
 
 /*##############################################*/
-/*					Vars						*/
-/*##############################################*/
-
-bool	is_running;
-
-/*##############################################*/
 /*					Structs						*/
 /*##############################################*/
 
@@ -52,12 +47,17 @@ typedef struct	s_env
 
 typedef struct	s_data
 {
-	char	*cmd;
-	char	**args;
+	char	*cmd; // echo
+	char	**args; // "echo" "lol" "caca"
 	char	*path;
 	int		infile;
 	int		outfile;
 	pid_t	pid;
 }	t_data;
+
+void	parsing(char *rl, t_data **data, char **env);
+void	init_struct(t_data **data);
+void	alloc_data(int data_size, t_data **data);
+char	*get_env_path(char **env, char *cmd);
 
 #endif

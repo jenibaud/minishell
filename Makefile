@@ -9,7 +9,10 @@ CFLAGS = -I$(INCLUDES) -Wall -Werror -Wextra -g
 CC = cc
 
 SRC_DIR = src/
-SRC_NAME =	minihell.c
+SRC_NAME =	minihell.c \
+			parsing/parsing.c \
+			parsing/path.c \
+			utils/init_data.c \
 
 OBJ_DIR = obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -40,4 +43,4 @@ all: $(NAME)
 
 re: fclean all
 
-.PHONY: re all fclean clean bonus
+.PHONY: re all fclean clean bonus minishell
