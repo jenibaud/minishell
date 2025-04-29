@@ -3,6 +3,7 @@
 
 # Exec
 *.out
+./minishell
 
 # Temp files
 *~
@@ -11,3 +12,6 @@
 
 # Build dir
 obj/
+
+# Libs
+*.a
