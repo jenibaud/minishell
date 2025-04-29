@@ -8,10 +8,11 @@ int	main(void)
 	while (is_running != 0)
 	{
 		rl = readline("turboshell> ");
-		if (strcmp(rl, "exit") == 0) {
+		if (ft_strcmp(rl, "exit") == 0)
+		{
 			free(rl);
-            break;
-        }
+			break;
+		}
 		add_history(rl);
 		printf("%s\n", rl);
 		free(rl);
