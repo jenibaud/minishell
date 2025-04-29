@@ -17,5 +17,6 @@ int	main(void)
 		add_history(rl);
 		free(rl);
 	}
+	rl_clear_history();
 	return (0);
 }

@@ -29,3 +29,8 @@ void	ft_pwd(void)
 	else
 		printf("\n");
 }
+
+// void	ft_cd(t_data data)
+// {
+
+// }
