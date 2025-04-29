@@ -9,7 +9,8 @@ CFLAGS = -I$(INCLUDES) -Wall -Werror -Wextra -g
 CC = cc
 
 SRC_DIR = src/
-SRC_NAME =	minihell.c
+SRC_NAME =	minihell.c\
+			echo.c
 
 OBJ_DIR = obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)

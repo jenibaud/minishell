@@ -21,6 +21,7 @@
 # include <termios.h>
 # include <term.h>
 # include <stdbool.h>
+# include "libft/inc/libft.h"
 
 /*##############################################*/
 /*					Defines						*/
@@ -31,19 +32,6 @@
 # define CODE_NOT_EXEC 126;
 # define CODE_ERROR 1;
 # define CODE_BADFD 0;
-
-/*##############################################*/
-/*					Commands					*/
-/*##############################################*/
-
-# define EXIT "exit";
-# define ECHO "echo";
-
-/*##############################################*/
-/*					Vars						*/
-/*##############################################*/
-
-bool	is_running;
 
 /*##############################################*/
 /*					Structs						*/
@@ -64,5 +52,12 @@ typedef struct	s_data
 	int		outfile;
 	pid_t	pid;
 }	t_data;
+
+/*##############################################*/
+/*					Commands					*/
+/*##############################################*/
+
+void	ft_echo(t_data *data);
+void	ft_pwd(void);
 
 #endif

@@ -3,9 +3,8 @@
 int	main(void)
 {
 	char *rl;
-	is_running = 1;
 
-	while (is_running != 0)
+	while (1)
 	{
 		rl = readline("turboshell> ");
 		if (ft_strcmp(rl, "exit") == 0)
@@ -13,8 +12,9 @@ int	main(void)
 			free(rl);
 			break;
 		}
+		if (ft_strcmp(rl, "pwd") == 0)
+			ft_pwd();
 		add_history(rl);
-		printf("%s\n", rl);
 		free(rl);
 	}
 	return (0);
