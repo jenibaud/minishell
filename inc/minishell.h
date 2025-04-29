@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jenibaud <jenibaud@student.42angouleme.    +#+  +:+       +#+        */
+/*   By: julifern <julifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:06:13 by jenibaud          #+#    #+#             */
-/*   Updated: 2025/04/29 13:04:39 by jenibaud         ###   ########.fr       */
+/*   Updated: 2025/04/29 13:24:44 by julifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,20 @@
 /*					Structs						*/
 /*##############################################*/
 
-typedef struct	s_prompt
+typedef struct	s_env
+{
+	char	**export;
+	char 	**env;
+}	t_env;
+
+typedef struct	s_data
 {
 	char	*cmd;
-	char	*args;
-}	t_prompt;
-
+	char	**args;
+	char	*path;
+	int		infile;
+	int		outfile;
+	pid_t	pid;
+}	t_data;
 
 #endif

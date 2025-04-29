@@ -6,7 +6,7 @@
 /*   By: julifern <julifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:36:32 by julifern          #+#    #+#             */
-/*   Updated: 2025/04/28 18:15:15 by julifern         ###   ########.fr       */
+/*   Updated: 2025/04/29 12:58:42 by julifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(char **env)
 {
 	char *rl;
 
-	rl = readline("minishell> ");
+	rl = readline("turboshell> ");
 	printf("%s", rl);
 	return (0);
 }
