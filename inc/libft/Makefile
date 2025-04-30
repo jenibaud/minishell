@@ -56,7 +56,8 @@ SRC_NAME =	ft_atol.c \
 			ft_lstlast_bonus.c \
 			ft_lstmap_bonus.c \
 			ft_lstnew_bonus.c \
-			ft_lstsize_bonus.c
+			ft_lstsize_bonus.c \
+			ft_isspace.c
 
 OBJ_DIR = obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)

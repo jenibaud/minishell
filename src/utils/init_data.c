@@ -4,7 +4,6 @@ void	init_struct(t_data **data)
 {
 	while (*data)
 	{
-		(*data)->args = NULL;
 		(*data)->cmd = NULL;
 		(*data)->infile = -1;
 		(*data)->outfile = -1;
@@ -22,7 +21,7 @@ void	alloc_data(int data_size, t_data **data)
 	data = ft_calloc(sizeof(t_data), data_size);
 	if (!data)
 		return ;
-	while (i < data_size - 1)
+	while (i < data_size)
 	{
 		data[i] = ft_calloc(sizeof(t_data), 1);
 		if (!data[i] && i)
@@ -32,6 +31,7 @@ void	alloc_data(int data_size, t_data **data)
 		}
 		++i;
 	}
-	data[data_size + 1] = NULL;
+	if (data_size > 1)
+		data[data_size] = NULL;
 	init_struct(data);
 }

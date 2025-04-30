@@ -38,27 +38,49 @@
 /*##############################################*/
 
 # define EXIT "exit";
-# define ECHO "echo";
 
 /*##############################################*/
 /*					Structs						*/
 /*##############################################*/
 
-typedef struct	s_env
+typedef struct s_env
 {
 	char	**export;
 	char 	**env;
-}	t_env;
+} t_env;
 
-typedef struct	s_data
+typedef enum e_type
 {
-	char	*cmd; // echo
-	char	**args; // "echo" "lol" "caca"
+	CMD,
+	PIPE,
+	FILENAME,
+	REDIR_IN,
+	REDIR_OUT,
+	QUOTES,
+	DQUOTES,
+	HEREDOC,
+	APPEND,
+	STR_ARG,
+} t_type;
+
+typedef struct s_token
+{
+	char	*value;
+	t_type	type;
+} t_token;
+
+typedef struct s_data
+{
+	char	**cmd; // cmd[0] will always be the command to execute anyways (cmd[0] = wc, cmd[1] = -l ...)
 	char	*path;
 	int		infile;
 	int		outfile;
 	pid_t	pid;
-}	t_data;
+} t_data;
+
+/*##############################################*/
+/*					Functions					*/
+/*##############################################*/
 
 void	parsing(char *rl, t_data **data, char **env);
 void	init_struct(t_data **data);
