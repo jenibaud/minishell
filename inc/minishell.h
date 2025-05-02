@@ -76,7 +76,8 @@ typedef struct s_data
 	char	*path;
 	int		infile;
 	int		outfile;
-	pid_t	pid;
+	int		exit_code;
+	pid_t	*pid;
 } t_data;
 
 /*##############################################*/
