@@ -26,7 +26,7 @@ $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 
 $(NAME): $(OBJ)
 	@make --no-print-directory -C $(LIBFTPATH)
-	@$(CC) $(CFLAGS) $(CLIBS) -o $(NAME) $(OBJ) $(LIBFTA)
+	@$(CC) $(CFLAGS) $(CLIBS) -o $(NAME) $(OBJ) $(LIBFTA) -I $(LIBFTPATH)
 	@echo "\033[1;32m Executable" $(NAME) "created"
 
 clean:
