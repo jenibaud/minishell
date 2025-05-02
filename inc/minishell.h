@@ -5,6 +5,7 @@
 /*					Includes					*/
 /*##############################################*/
 
+# include <libft/inc/libft.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdio.h>
@@ -21,7 +22,6 @@
 # include <termios.h>
 # include <term.h>
 # include <stdbool.h>
-# include "libft/inc/libft.h"
 
 /*##############################################*/
 /*					Defines						*/
@@ -34,31 +34,58 @@
 # define CODE_BADFD 0;
 
 /*##############################################*/
+/*					Commands					*/
+/*##############################################*/
+
+# define EXIT "exit";
+
+/*##############################################*/
 /*					Structs						*/
 /*##############################################*/
 
-typedef struct	s_env
+typedef struct s_env
 {
 	char	**export;
 	char 	**env;
-}	t_env;
+} t_env;
 
-typedef struct	s_data
+typedef enum e_type
 {
-	char	*cmd;
-	char	**args;
+	CMD,
+	PIPE,
+	FILENAME,
+	REDIR_IN,
+	REDIR_OUT,
+	QUOTES,
+	DQUOTES,
+	HEREDOC,
+	APPEND,
+	STR_ARG,
+	B_EXIT,
+} t_type;
+
+typedef struct s_token
+{
+	char	*value;
+	t_type	type;
+} t_token;
+
+typedef struct s_data
+{
+	char	**cmd; // cmd[0] will always be the command to execute anyways (cmd[0] = wc, cmd[1] = -l ...)
 	char	*path;
 	int		infile;
 	int		outfile;
 	pid_t	pid;
-}	t_data;
+} t_data;
 
 /*##############################################*/
-/*					Commands					*/
+/*					Functions					*/
 /*##############################################*/
 
-void	ft_echo(t_data *data);
-void	ft_pwd(void);
-void	ft_cd(t_data *data);
+void	parsing(char *rl, t_data **data, char **env);
+void	init_struct(t_data **data);
+void	alloc_data(int data_size, t_data **data);
+char	*get_env_path(char **env, char *cmd);
 
 #endif
