@@ -9,8 +9,9 @@ int	main(void)
 		rl = readline("turboshell> ");
 		if (ft_strcmp(rl, "exit") == 0)
 		{
+			printf("%s\n", rl);
 			free(rl);
-			break;
+			exit (0);
 		}
 		if (ft_strcmp(rl, "pwd") == 0)
 			ft_pwd();
