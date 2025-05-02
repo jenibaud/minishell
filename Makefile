@@ -10,7 +10,8 @@ CC = cc
 
 SRC_DIR = src/
 SRC_NAME =	minihell.c\
-			built-ins.c
+			built-ins/pwd.c\
+			built-ins/exit.c
 
 OBJ_DIR = obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
