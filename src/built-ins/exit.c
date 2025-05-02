@@ -1,9 +1,10 @@
 #include "minishell.h"
 
-void	ft_exit(t_data *data)
+void	ft_exit(char **argv)
 {
 	int	code;
 
-	code = ft_atoi(data->exit_code);
+	code = (ft_atoi(argv[2]) % 256);
+	//inserer fonction free
 	exit (code);
 }

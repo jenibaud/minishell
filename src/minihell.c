@@ -1,8 +1,10 @@
 #include "../inc/minishell.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	char *rl;
+	(void)argc;
+	char 	*rl;
+	// t_data	data;
 
 	while (1)
 	{
@@ -11,10 +13,10 @@ int	main(void)
 		{
 			printf("%s\n", rl);
 			free(rl);
-			exit (0);
+			ft_exit(argv);
 		}
-		if (ft_strcmp(rl, "pwd") == 0)
-			ft_pwd();
+		// if (ft_strcmp(rl, "pwd") == 0)
+		// 	ft_pwd();
 		add_history(rl);
 		free(rl);
 	}

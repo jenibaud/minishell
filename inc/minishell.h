@@ -88,5 +88,6 @@ void	parsing(char *rl, t_data **data, char **env);
 void	init_struct(t_data **data);
 void	alloc_data(int data_size, t_data **data);
 char	*get_env_path(char **env, char *cmd);
+void	ft_exit(char **argv);
 
 #endif
