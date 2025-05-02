@@ -30,7 +30,15 @@ void	ft_pwd(void)
 		printf("\n");
 }
 
-// void	ft_cd(t_data data)
-// {
-
-// }
+void	ft_cd(t_data *data)
+{
+	if (chdir(data->args[1]) == 0)
+	{
+		//changer les variables d'environnement
+		//mpanic tester
+	}
+	else
+	{
+		printf("turboshell: cd: %s : No such file or directory\n", data->args[1]);
+	}
+}

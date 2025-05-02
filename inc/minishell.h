@@ -59,5 +59,6 @@ typedef struct	s_data
 
 void	ft_echo(t_data *data);
 void	ft_pwd(void);
+void	ft_cd(t_data *data);
 
 #endif
