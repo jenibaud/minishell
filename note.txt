@@ -1,0 +1,5 @@
+1. echo """feur""" > feur
+2. echo ""fe"ur"" > (quotes)
+3. cd "nom_dossier" > changement dossier
+4. cd ""nom_dossier"" > changement dossier
+5. cd "nom_"dossier" > (quotes)
