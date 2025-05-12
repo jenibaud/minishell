@@ -6,29 +6,13 @@
 /*   By: julifern <julifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:41:19 by julifern          #+#    #+#             */
-/*   Updated: 2025/05/02 17:38:01 by julifern         ###   ########.fr       */
+/*   Updated: 2025/05/05 17:24:00 by julifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_word_quotes_len(char const *s, char c)
-{
-	int	i;
-	int	word_len;
-	int	quotes;
-
-	i = 0;
-	word_len = 0;
-	quotes = 0;
-	while (s[i])
-	{
-		
-	}
-	return (word_len);
-}
-
-static int	ft_word_quotes_counter(char const *s, char c)
+int	ft_word_quotes_counter(char *s, char c)
 {
 	int	i;
 	int	word_counter;
@@ -37,21 +21,22 @@ static int	ft_word_quotes_counter(char const *s, char c)
 	word_counter = 0;
 	while (s[i])
 	{
-		if (s[i] == 22 || s[i] == 27)
+		if (s[i] == 34 || s[i] == 39)
 		{
-			while (s[i] != 22 && s[i] != 27)
+			++i;
+			while (s[i] != 34 && s[i] != 39)
 			{
-				i++;
+				++i;
 			}
 		}
-		if ((s[i] == c && s[i + 1] != c) || s[i] == 0)
+		if (s[i + 1] == 0 || (s[i] == c && s[i + 1] != c))
 			word_counter++;
 		i++;
 	}
 	return (word_counter);
 }
 
-static char	**ft_free_tabs(char **str, int j)
+char	**ft_free_tabs(char **str, int j)
 {
 	while (--j)
 		free(str[j]);
@@ -59,11 +44,10 @@ static char	**ft_free_tabs(char **str, int j)
 	return (NULL);
 }
 
-static char	**ft_splitter(char **str, char const *s, char c)
+char	**ft_splitter(char **str, char *s, char c)
 {
 	int	i;
 	int	j;
-	int	len;
 
 	i = 0;
 	j = 0;
@@ -71,27 +55,27 @@ static char	**ft_splitter(char **str, char const *s, char c)
 	{
 		while (s[i] && s[i] == c)
 			i++;
-		len = ft_word_len(&s[i], c);
-		if (len == 0)
-			break ;
-		str[j] = ft_substr(s, i, len);
+		if (s[i] && (s[i] == 34 || s[i] == 39))
+			str = quote_split(str, s, i, j);
+		else
+			str = normal_split(str, s, i, c, j);
 		if (!str[j])
-			return (ft_free_tabs(str, j));
-		i += len;
-		j++;
+			ft_free_tabs(str, j);
+		i += len_splitted(s, i, c);
+		++j;
 	}
 	str[j] = 0;
 	return (str);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_quotes(char *s, char c)
 {
 	char	**str;
 	int		words;
 
 	if (!s)
 		return (NULL);
-	words = ft_word_counter(s, c);
+	words = ft_word_quotes_counter(s, c);
 	str = malloc(sizeof(char *) * (words + 1));
 	if (!str)
 		return (NULL);

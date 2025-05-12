@@ -6,7 +6,7 @@
 /*   By: julifern <julifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 13:37:11 by julifern          #+#    #+#             */
-/*   Updated: 2025/05/02 15:04:05 by julifern         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:51:25 by julifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
+char	**ft_split_quotes(char *s, char c);
+char	**normal_split(char **str, char *s, int i, char c, int j);
+char	**quote_split(char **str, char *s, int i, int j);
+int		len_splitted(char *s, int i, char c);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_lstsize(t_list *lst);

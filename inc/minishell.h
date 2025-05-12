@@ -27,11 +27,13 @@
 /*					Defines						*/
 /*##############################################*/
 
-# define CODE_CTRL_C 130;
-# define CODE_NOT_FOUND 127;
-# define CODE_NOT_EXEC 126;
-# define CODE_ERROR 1;
-# define CODE_BADFD 0;
+# define CODE_CTRL_C 130
+# define CODE_NOT_FOUND 127
+# define CODE_NOT_EXEC 126
+# define CODE_ERROR 1
+# define CODE_BADFD 0
+# define SIMPLEQ 39
+# define DOUBLEQ 34
 
 /*##############################################*/
 /*					Commands					*/
@@ -52,20 +54,17 @@ typedef struct s_env
 typedef enum e_type
 {
 	CMD,
-	PIPE,
-	FILENAME,
+	WORD,
+	PIPE, 
 	REDIR_IN,
 	REDIR_OUT,
-	QUOTES,
-	DQUOTES,
 	HEREDOC,
 	APPEND,
-	STR_ARG,
 } t_type;
 
 typedef struct s_token
 {
-	char			*value;
+	char			*content;
 	t_type			type;
 	struct s_token	*next;
 } t_token;
@@ -79,15 +78,16 @@ typedef struct s_data
 	int		outfile;
 	int		exit_code;
 	pid_t	*pid;
+	t_token	*token;
 } t_data;
 
 /*##############################################*/
 /*					Functions					*/
 /*##############################################*/
 
-void	parsing(char *rl, t_data **data, char **env);
-void	init_struct(t_data **data);
-void	alloc_data(int data_size, t_data **data);
+void	parsing(char *rl, t_data *data, char **env);
+void	init_struct(t_data *data);
+void	alloc_data(int data_size, t_data *data);
 char	*get_env_path(char **env, char *cmd);
 
 #endif

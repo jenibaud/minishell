@@ -11,5 +11,5 @@ void	init_struct(t_data *data)
 
 void	free_data(t_data *data)
 {
-	
+	;
 }

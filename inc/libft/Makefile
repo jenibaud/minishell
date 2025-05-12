@@ -4,7 +4,7 @@ INCLUDES = inc/
 
 AR = ar rcs
 
-CFLAGS = -I$(INCLUDES) -Wall -Werror -Wextra
+CFLAGS = -I$(INCLUDES) -Wall -Werror -Wextra -g
 CC = cc
 
 SRC_DIR = src/
@@ -15,6 +15,8 @@ SRC_NAME =	ft_atol.c \
 			ft_memcmp.c \
 			ft_memchr.c \
 			ft_split.c \
+			ft_split_quotes.c \
+			ft_spit_quotes_utils.c \
 			ft_itoa.c \
 			ft_striteri.c \
 			ft_strmapi.c \
