@@ -73,6 +73,7 @@ typedef struct s_data
 {
 	char	**args; //
 	char	**cmd; // cmd[0] will always be the command to execute anyways (cmd[0] = wc, cmd[1] = -l ...)
+	char	**env;
 	char	*path;
 	int		infile;
 	int		outfile;
