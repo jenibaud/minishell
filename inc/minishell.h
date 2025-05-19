@@ -87,7 +87,21 @@ typedef struct s_data
 void	parsing(char *rl, t_data **data, char **env);
 void	init_struct(t_data **data);
 void	alloc_data(int data_size, t_data **data);
+
+/*##############################################*/
+/*					Built-ins					*/
+/*##############################################*/
+
 char	*get_env_path(char **env, char *cmd);
 void	ft_exit(char **argv);
+int		cd(char *str);
+int		env(void);
+void	ft_pwd(void);
+int		handle_cd_home(char **str);
+int		change_to_path(char *path);
+int		update_env(char *path, char *old_pwd);
+char	*resolve_cd_path(char *str);
+char	*check_and_create_new_path(DIR *dir, char *str, char *path);
+void	set_path_to_parent(char *cwd, char **path);
 
 #endif
