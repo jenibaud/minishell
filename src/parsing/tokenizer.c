@@ -1,5 +1,10 @@
 #include "../../inc/minishell.h"
 
+void	skip_to_pipe()
+{
+
+}
+
 t_token	*new_token(void)
 {
 	t_token	*new_token;
@@ -18,15 +23,15 @@ int	detect_token(char c, int target)
 	if (target == DOUBLEQ)
 		return(c != target);
 	if (ft_isalnum(target))
-		return (ft_isalnum(c));
-	if (target == '-')
-		return(ft_isalnum(c));
+		return (c != '|' || c != 0);
+	// if (target == '-')
+	// 	return(ft_isalnum(c));
 	return (0);
 }
 
-// void	set_token_type(t_token *token, int target)
+// void	set_token_type(t_token *token)
 // {
-// 	;
+
 // }
 
 int	fill_token(t_token *token, char *str)
@@ -90,28 +95,24 @@ int	cmd_size(t_token *token)
 
 void	token_to_cmd(t_data *data)
 {
-	int	i;
+	int		i;
+	int		pipe_count;
 	t_token *token;
 
 	i = 0;
-	data->cmd = ft_calloc(sizeof(char *), cmd_size(data->token) + 1);
+	pipe_count = data->pipe_nmb;
 	token = data->token;
 	while (token)
 	{
-		if (token->type == CMD || token->type == WORD)
-		{
-			data->cmd[i] = ft_calloc(sizeof(char), ft_strlen(token->content) + 1);
-			data->cmd[i] = token->content;
-		}
+		token->cmd = ft_split(token->content, ' ');
 		token = token->next;
-		++i;
 	}
 }
 
 void	process(t_data *data)
 {
-	data->path = get_env_path(data->env, data->cmd[0]);
-	execve(data->path, data->cmd, data->env);
+	data->path = get_env_path(data->env, data->token->cmd[0]);
+	execve(data->path, data->token->cmd, data->env);
 }
 
 //test main

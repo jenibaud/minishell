@@ -65,6 +65,9 @@ typedef enum e_type
 typedef struct s_token
 {
 	char			*content;
+	char			**cmd;
+	int				infile;
+	int				outfile;
 	t_type			type;
 	struct s_token	*next;
 } t_token;
@@ -75,9 +78,8 @@ typedef struct s_data
 	char	**cmd; // cmd[0] will always be the command to execute anyways (cmd[0] = wc, cmd[1] = -l ...)
 	char	**env;
 	char	*path;
-	int		infile;
-	int		outfile;
 	int		exit_code;
+	int		pipe_nmb;
 	pid_t	*pid;
 	t_token	*token;
 } t_data;
