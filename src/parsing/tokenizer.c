@@ -8,7 +8,7 @@ void	skip_to_pipe()
 t_token	*new_token(void)
 {
 	t_token	*new_token;
-
+	
 	new_token = ft_calloc(sizeof(*new_token), 1);
 	new_token->content = NULL;
 	new_token->next = NULL;
@@ -16,42 +16,68 @@ t_token	*new_token(void)
 	return (new_token);
 }
 
-int	detect_token(char c, int target)
+int	is_meta_character(char c)
+{
+	if (c == '|' || c == '<' || c == '>')
+		return (1);
+	return (0);
+}
+
+int	detect_token_end(char c, int target)
 {
 	if (target == SIMPLEQ)
 		return (c != target);
 	if (target == DOUBLEQ)
 		return(c != target);
 	if (ft_isalnum(target))
-		return (c != '|' || c != 0);
-	// if (target == '-')
-	// 	return(ft_isalnum(c));
+		return (!is_meta_character(c) && c != 0);
+	if (target == '|')
+		return (c == '|');
+	if (target == '<')
+		return (c != target);
+	if (target == '>')
+		return (c != target);
 	return (0);
 }
 
-// void	set_token_type(t_token *token)
-// {
+void	set_token_type(char *input, t_token *token, int target)
+{
+	token->type = WORD;
+	if (target == SIMPLEQ || target == DOUBLEQ)
+		token->type = QUOTED;
+	else if (target == '|')
+		token->type = PIPE;
+	else if (target == '<')
+	{
+		if (input[1] == '<')
+			token->type = HEREDOC;
+		else
+			token->type = REDIR_IN;
+	}
+	else if (target == '>')
+	{
+		if (input[1] == '>')
+			token->type = APPEND;
+		else
+			token->type = REDIR_OUT;
+	}
+}
 
-// }
-
-int	fill_token(t_token *token, char *str)
+int	fill_token(t_token *token, char *input)
 {
 	char	*buff;
 	int		target;
 	int		i;
 
 	i = 0;
-	target = str[0];
+	target = input[0];
+	set_token_type(input, token, target);
 	i++;
-	while (str[i] && detect_token(str[i], target))
+	while (input[i] && detect_token_end(input[i], target))
 		++i;
-	if (target == DOUBLEQ || target == SIMPLEQ)
-		buff = ft_substr(str, 1, i - 1);
-	else
-		buff = ft_substr(str, 0, i);
-	token->type = CMD;
+	buff = ft_substr(input, 0, i);
 	token->content = buff;
-	return (i + 1);
+	return (i);
 }
 
 void	tokenizer(char *input, t_data *data)
@@ -86,34 +112,34 @@ int	cmd_size(t_token *token)
 	i = 0;
 	while (token)
 	{
-		if (token->type == CMD || token->type == WORD)
+		if (token->type == WORD)
 			i++;
 		token = token->next;
 	}
 	return (i);
 }
 
-void	token_to_cmd(t_data *data)
-{
-	int		i;
-	int		pipe_count;
-	t_token *token;
+// void	token_to_cmd(t_data *data)
+// {
+// 	int		i;
+// 	int		pipe_count;
+// 	t_token *token;
 
-	i = 0;
-	pipe_count = data->pipe_nmb;
-	token = data->token;
-	while (token)
-	{
-		token->cmd = ft_split(token->content, ' ');
-		token = token->next;
-	}
-}
+// 	i = 0;
+// 	pipe_count = data->pipe_nmb;
+// 	token = data->token;
+// 	while (token)
+// 	{
+// 		token->cmd = ft_split(token->content, ' ');
+// 		token = token->next;
+// 	}
+// }
 
-void	process(t_data *data)
-{
-	data->path = get_env_path(data->env, data->token->cmd[0]);
-	execve(data->path, data->token->cmd, data->env);
-}
+// void	process(t_data *data)
+// {
+// 	data->path = get_env_path(data->env, data->token->cmd[0]);
+// 	execve(data->path, data->token->cmd, data->env);
+// }
 
 //test main
 
@@ -121,18 +147,19 @@ int main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	t_data	*data;
-	// t_token	*tmp;
+	t_token	*tmp;
 
 	data = ft_calloc(sizeof(*data), 1);
 	data->env = env;
 	tokenizer(argv[1], data);
-	// while (data->token)
-	// {
-	// 	printf("%s\n", data->token->content);
-	// 	tmp = data->token;
-	// 	data->token = data->token->next;
-	// 	free(tmp);
-	// }
-	token_to_cmd(data);
-	process(data);
+	while (data->token)
+	{
+		printf("token : %s, type : ", data->token->content);
+		printf("%d\n", data->token->type);
+		tmp = data->token;
+		data->token = data->token->next;
+		free(tmp);
+	}
+	// token_to_cmd(data);
+	// process(data);
 }

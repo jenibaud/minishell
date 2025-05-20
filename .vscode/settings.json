@@ -1,4 +1,5 @@
 {
+	"editor.semanticHighlighting.enabled": true,
 	"files.associations": {
 		"array": "c",
 		"string_view": "c",
