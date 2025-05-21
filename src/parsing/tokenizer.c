@@ -25,27 +25,21 @@ int	is_meta_character(char c)
 
 int	detect_token_end(char c, int target)
 {
-	if (target == SIMPLEQ)
-		return (c != target);
-	if (target == DOUBLEQ)
-		return(c != target);
-	if (ft_isalnum(target))
+	if (ft_isalnum(target) || target == SIMPLEQ || target == DOUBLEQ)
 		return (!is_meta_character(c) && c != 0);
 	if (target == '|')
 		return (c == '|');
 	if (target == '<')
-		return (c != target);
+		return (c == target);
 	if (target == '>')
-		return (c != target);
+		return (c == target);
 	return (0);
 }
 
 void	set_token_type(char *input, t_token *token, int target)
 {
 	token->type = WORD;
-	if (target == SIMPLEQ || target == DOUBLEQ)
-		token->type = QUOTED;
-	else if (target == '|')
+	if (target == '|')
 		token->type = PIPE;
 	else if (target == '<')
 	{

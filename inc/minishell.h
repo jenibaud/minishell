@@ -53,13 +53,12 @@ typedef struct s_env
 
 typedef enum e_type
 {
-	WORD,
-	QUOTED,
-	PIPE,
-	REDIR_IN,
-	REDIR_OUT,
-	HEREDOC,
-	APPEND,
+	WORD, // 0
+	PIPE, // 1
+	REDIR_IN, // 2
+	REDIR_OUT, // 3
+	HEREDOC, // 4
+	APPEND, // 5
 } t_type;
 
 typedef struct s_token
