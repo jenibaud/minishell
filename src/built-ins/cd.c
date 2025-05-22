@@ -91,5 +91,3 @@ int	cd(char *str)
 		free(path);
 	return (0);
 }
-
-// ça marche

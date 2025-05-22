@@ -15,7 +15,10 @@ SRC_NAME =	minihell.c\
 			built-ins/echo.c\
 			built-ins/cd.c\
 			built-ins/env.c\
-			built-ins/cd_utils.c
+			built-ins/cd_utils.c\
+			built-ins/export.c\
+			built-ins/unset.c\
+			built-ins/export_utils.c
 
 OBJ_DIR = obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)

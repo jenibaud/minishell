@@ -3,10 +3,13 @@
 int	main(int argc, char **argv)
 {
 	(void)argc;
-	char 	*rl;
-	char	*dir;
+	char 		*rl;
+	char		*dir;
+	t_env		*env_list;
+	extern char	**environ;
 	// t_data	data;
 
+	env_list = env_init(environ);
 	while (1)
 	{
 		rl = readline("turboshell> ");
