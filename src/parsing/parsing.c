@@ -55,3 +55,11 @@ char	**valid_input(char *rl)
 	else
 		return (array);
 }
+
+int	parse(t_data *data, t_cmd *cmd)
+{
+	char **res;
+
+	res = ft_split(data->token->content, ' ');
+	cmd->cmd = res;
+}

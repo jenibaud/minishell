@@ -76,36 +76,15 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 } t_cmd;
 
-typedef enum e_type
-{
-	CMD,
-	PIPE,
-	FILENAME,
-	REDIR_IN,
-	REDIR_OUT,
-	QUOTES,
-	DQUOTES,
-	HEREDOC,
-	APPEND,
-	STR_ARG,
-	B_EXIT,
-} t_type;
-
-typedef struct s_token
-{
-	char	*value;
-	t_type	type;
-} t_token;
-
 typedef struct s_data
 {
 	char	**env;
-	char	**cmd; // cmd[0] will always be the command to execute anyways (cmd[0] = wc, cmd[1] = -l ...)
 	char	*path;
-	int		infile;
-	int		outfile;
 	int		exit_code;
+	int		pipe_nmb;
 	pid_t	*pid;
+	t_token	*token;
+	t_cmd	*cmd;
 } t_data;
 
 typedef struct s_env {
@@ -121,6 +100,7 @@ typedef struct s_env {
 void	parsing(char *rl, t_data **data, char **env);
 void	init_struct(t_data **data);
 void	alloc_data(int data_size, t_data **data);
+char	*get_env_path(char **env, char *cmd);
 
 /*##############################################*/
 /*					Built-ins					*/
