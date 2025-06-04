@@ -1,2 +1,1 @@
-si on cd dans un dossier et qu'on le suppr, quand on .. on doit etre dans 
-corbeille
+dans CD : utiliser liste chainee s_env au lieu de getenv()

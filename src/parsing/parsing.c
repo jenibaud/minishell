@@ -58,8 +58,18 @@ char	**valid_input(char *rl)
 
 int	parse(t_data *data, t_cmd *cmd)
 {
-	char **res;
+	if (!pipes(data))
+		return (0); //msg erreur
+}
 
-	res = ft_split(data->token->content, ' ');
-	cmd->cmd = res;
+int	pipes(t_data *data)
+{
+	if (data->token->type == PIPE)
+		return (0);
+	while (data->token->next)
+	{
+		if ((data->token->type == PIPE) && (data->token->next == NULL))
+			return (0);
+	}
+	return (1);
 }
