@@ -9,10 +9,20 @@ CFLAGS = -I$(INCLUDES) -Wall -Werror -Wextra -g
 CC = cc
 
 SRC_DIR = src/
+
 SRC_NAME =	minihell.c \
 			parsing/parsing.c \
 			parsing/path.c \
 			utils/init_data.c \
+			built-ins/pwd.c\
+			built-ins/exit.c\
+			built-ins/echo.c\
+			built-ins/cd.c\
+			built-ins/env.c\
+			built-ins/cd_utils.c\
+			built-ins/export.c\
+			built-ins/unset.c\
+			built-ins/export_utils.c
 
 OBJ_DIR = obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)

@@ -1,24 +1,16 @@
 #include "minishell.h"
 
-// char	*readline_check(t_data *data)
-// {
-// 	char	*rl;
-
-// 	// rajouter signaux
-// 	return (rl);
-// }
-
-int	main(int ac, char **av, char **env)
+int	main(int argc, char **argv)
 {
-	// t_data	*data;
-	char	*raw_input;
-	char	**array;
-	int		i;
-	
-	(void)env;
-	(void)ac;
-	(void)av;
-	// data = init_data(data);
+	(void)argc;
+	int			i;
+	char 		*raw_input;
+	char		*dir;
+	t_env		*env_list;
+	extern char	**environ;
+	// t_data	data;
+
+	env_list = env_init(environ);
 	while (1)
 	{
 		i = 0;
@@ -26,21 +18,27 @@ int	main(int ac, char **av, char **env)
 		// raw_input = readline_check(data);
 		if (ft_strcmp(raw_input, "exit") == 0)
 		{
+			printf("%s\n", raw_input);
 			free(raw_input);
-			break;
+			ft_exit(argv);
 		}
-		// add_history(raw_input);
-		
-		// data->args = valid_input(raw_input);
-		// handle_input(data);
-		while (array[i])
+		if (ft_strcmp(raw_input, "dir") == 0)
 		{
-			printf("%s\n", array[i]);
-			free(array[i]);
-			array[i] = NULL;
-			i++;
+			dir = getenv("PWD");
+			printf("%s\n", dir);
+			free(raw_input);
 		}
+		if (ft_strcmp(raw_input, "env") == 0)
+		{
+			env();
+			free(raw_input);
+		}
+		cd(raw_input);
+		if (ft_strcmp(raw_input, "pwd") == 0)
+			ft_pwd();
+		add_history(raw_input);
 		free(raw_input);
 	}
+	rl_clear_history();
 	return (0);
 }

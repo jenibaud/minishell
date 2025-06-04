@@ -1,0 +1,2 @@
+si on cd dans un dossier et qu'on le suppr, quand on .. on doit etre dans 
+corbeille

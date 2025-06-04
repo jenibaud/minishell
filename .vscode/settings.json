@@ -1,9 +1,0 @@
-{
-	"editor.semanticHighlighting.enabled": true,
-	"files.associations": {
-		"array": "c",
-		"string_view": "c",
-		"initializer_list": "c",
-		"span": "c"
-	}
-}
