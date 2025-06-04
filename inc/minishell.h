@@ -117,5 +117,8 @@ void	builtin_export(char **args, t_env **env);
 int		is_valid_identifier(char *str);
 void	env_set(t_env **env, char *key, char *value);
 void	export_print(t_env *env);
+void	builtin_unset(char **args, t_env **env);
+void	env_remove(t_env **env, char *key);
+int		is_valid_unset_key(char *str);
 
 #endif
