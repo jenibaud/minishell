@@ -45,11 +45,11 @@
 /*					Structs						*/
 /*##############################################*/
 
-typedef struct s_env
-{
-	char	**export;
-	char 	**env;
-} t_env;
+// typedef struct s_env
+// {
+// 	char	**export;
+// 	char 	**env;
+// } t_env;
 
 typedef enum e_type
 {
@@ -128,5 +128,14 @@ void	export_print(t_env *env);
 void	builtin_unset(char **args, t_env **env);
 void	env_remove(t_env **env, char *key);
 int		is_valid_unset_key(char *str);
+
+/*##############################################*/
+/*					Parsing 					*/
+/*##############################################*/
+
+int	parse(t_data *data, t_cmd *cmd);
+int	pipes(t_data *data);
+int	redir_in(t_data *data);
+int	redir_out(t_data *data);
 
 #endif

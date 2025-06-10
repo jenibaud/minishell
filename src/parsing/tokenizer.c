@@ -1,5 +1,15 @@
 #include "../../inc/minishell.h"
 
+static void	print_token(t_data *data)
+{
+	while (data->token)
+	{
+		printf("token : %s, type : ", data->token->content);
+		printf("%d\n", data->token->type);
+		data->token = data->token->next;
+	}
+}
+
 void	skip_to_pipe()
 {
 
@@ -154,6 +164,7 @@ int main(int argc, char **argv, char **env)
 		data->token = data->token->next;
 		free(tmp);
 	}
+	print_token(data);
 	// token_to_cmd(data);
 	// process(data);
 }
